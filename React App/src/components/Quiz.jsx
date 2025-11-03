@@ -5,20 +5,60 @@ import Result from "./result.jsx";
 function Quiz(){
     const questionList = [
         {
-            question : "What is the capital of France?",
-            options : ["Berlin", "London", "Paris", "Rome"],
-            answer : "Paris"
+            question: "Which word is a noun?",
+            options: ["run", "beautiful", "school", "quickly"],
+            answer: "school"
         },
         {
-            question : "Which language is used for web apps?",
-            options : ["PHP", "Python", "Javascript", "All"],
-            answer : "All"
+            question: "What is the past tense of 'walk'?",
+            options: ["walked", "walking", "will walk", "walks"],
+            answer: "walked"
         },
         {
-            question : "What does JSX stand for ?",
-            options : ["JavaScript XML", "Java Syntax Extension", "Just a Simple example", "None of the above"],
-            answer : "Javascript XML"
+            question: "Which sentence is correct?",
+            options: [
+                "She go to the store.",
+                "She goes to the store.",
+                "She going to the store.",
+                "She gone to the store."
+            ],
+            answer: "She goes to the store."
         },
+        {
+            question: "What is the opposite of 'hot'?",
+            options: ["warm", "cold", "spicy", "boiling"],
+            answer: "cold"
+        },
+        {
+            question: "Which word rhymes with 'cat'?",
+            options: ["dog", "hat", "car", "cake"],
+            answer: "hat"
+        },
+        {
+            question: "What punctuation ends a question?",
+            options: [".", "!", ",", "?"],
+            answer: "?"
+        },
+        {
+            question: "Which word is a color?",
+            options: ["apple", "blue", "run", "happy"],
+            answer: "blue"
+        },
+        {
+            question: "What is the plural of 'book'?",
+            options: ["bookes", "books", "bookies", "book"],
+            answer: "books"
+        },
+        {
+            question: "Which word describes a person, place, or thing?",
+            options: ["verb", "adjective", "noun", "adverb"],
+            answer: "noun"
+        },
+        {
+            question: "Complete the sentence: I ___ to school every day.",
+            options: ["go", "went", "going", "gone"],
+            answer: "go"
+        }
     ];
 
     const [selectedOption, setSelectedOption] = useState("None");
@@ -50,8 +90,14 @@ function Quiz(){
         if(currentQuestion > 0) setCurrentQuestion(currentQuestion - 1);
     }
 
+    function restartQuiz() {
+        setUserAnswer(initialAnswer);
+        setCurrentQuestion(0);
+        setIsQuizFinished(false);
+    }
+
     if(isQuizFinished){
-        return <Result userAnswer={userAnswer} questionList={questionList}/>
+        return <Result userAnswer={userAnswer} questionList={questionList} restartQuiz={restartQuiz}/>
     }
 
     return (

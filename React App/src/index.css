@@ -1,4 +1,4 @@
-/*Global rest and styling*/
+/*Global reset and styling*/
 body {
   margin: 0;
   padding: 0;
@@ -6,51 +6,55 @@ body {
   background: #f0f4f8;
   color: #333;
 }
+
 /*Container styling for the app*/
 .app-container{
   max-width: 600px;
-  margin : 50px auto;
+  margin: 20px auto;
   background: #fff;
-  padding: 30px;
+  padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  width: 90%; /* Added for better mobile control */
 }
+
+/* Mobile First - Base styles for small screens */
 h1, h2{
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
+  font-size: clamp(1.5rem, 5vw, 2rem); /* Responsive font size */
 }
 
 p{
   text-align: center;
+  margin: 10px 0;
 }
 
 .question{
-  font-size: 1.2rem;
-  margin-bottom: 20px;
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+  line-height: 1.4;
 }
 
 .option {
-  display: block;           /* makes each button take full width */
-  width: 100%;              /* match parent width */
-  border: none;             /* removes border */
-  outline: none;            /* removes outline */
+  display: block;
+  width: 100%;
+  border: none;
+  outline: none;
   border-radius: 6px;
-  margin: 10px 0;
+  margin: 8px 0;
   background: #e7ecf0;
   cursor: pointer;
   text-align: left;
-  padding: 10px 12px;       /* adds some spacing inside */
-  box-sizing: border-box;   /* ensures padding doesn’t overflow width */
+  padding: 12px 15px; /* Slightly larger padding for touch */
+  box-sizing: border-box;
   transition: background 0.3s;
+  font-size: 1rem;
+  min-height: 44px; /* Minimum touch target size */
 }
 
 .option:hover {
-  background: #dbe3eb;      /* subtle hover effect */
-}
-
-
-.option:hover {
-  background: #d6dde5;
+  background: #dbe3eb;
 }
 
 .option.selected {
@@ -62,18 +66,21 @@ p{
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
+  gap: 10px; /* Added gap for better spacing */
 }
 
-.nav-buttons button {                      /* make buttons equal width */
-  margin: 0 8px;                  /* small space between them */
-  padding: 10px 16px;             /* inner spacing */
-  border: none;                   /* remove border */
-  border-radius: 6px;             /* rounded corners */
-  background: #2196f3;            /* primary blue color */
-  color: white;                   /* white text */
-  cursor: pointer;                /* pointer cursor */
-  font-size: 16px;                /* readable text */
-  transition: background 0.3s;    /* smooth hover transition */
+.nav-buttons button {
+  flex: 1; /* Make buttons take equal space */
+  margin: 0;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 6px;
+  background: #2196f3;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s;
+  min-height: 44px; /* Minimum touch target size */
 }
 
 .nav-buttons button:hover{
@@ -89,7 +96,7 @@ p{
 .restart-button{
   display: block;
   margin: 20px auto;
-  padding: 10px 20px;
+  padding: 14px 24px;
   border: none;
   background: #42a5f5;
   color: white;
@@ -97,4 +104,109 @@ p{
   cursor: pointer;
   font-size: 1rem;
   transition: background 0.3s;
+  min-height: 44px; /* Minimum touch target size */
+  min-width: 120px; /* Minimum width for better touch */
+}
+
+.restart-button:hover{
+  background: #1e88e5;
+}
+
+/* Tablet and Desktop Styles */
+@media (min-width: 768px) {
+  .app-container{
+    margin: 50px auto;
+    padding: 30px;
+  }
+
+  h1, h2{
+    margin-bottom: 20px;
+  }
+
+  .question{
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+  }
+
+  .option {
+    margin: 10px 0;
+    padding: 10px 12px;
+    min-height: auto; /* Reset min-height for desktop */
+  }
+
+  .nav-buttons button {
+    padding: 10px 16px;
+    min-height: auto; /* Reset min-height for desktop */
+  }
+
+  .restart-button{
+    padding: 10px 20px;
+    min-height: auto; /* Reset min-height for desktop */
+  }
+}
+
+/* Large Desktop Styles */
+@media (min-width: 1024px) {
+  .app-container{
+    max-width: 700px;
+  }
+}
+
+/* Very small phones (portrait) */
+@media (max-width: 360px) {
+  .app-container{
+    padding: 15px;
+    margin: 10px auto;
+    width: 95%;
+  }
+
+  h1, h2{
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+  }
+
+  .question{
+    font-size: 1rem;
+    margin-bottom: 12px;
+  }
+
+  .option {
+    padding: 10px 12px;
+    margin: 6px 0;
+    font-size: 0.95rem;
+  }
+
+  .nav-buttons{
+    flex-direction: column; /* Stack buttons vertically on very small screens */
+    gap: 8px;
+  }
+
+  .nav-buttons button {
+    width: 100%;
+  }
+}
+
+/* Landscape mode for phones */
+@media (max-height: 500px) and (orientation: landscape) {
+  .app-container{
+    margin: 10px auto;
+    padding: 15px;
+  }
+
+  .option {
+    padding: 8px 12px;
+    margin: 4px 0;
+    min-height: 40px;
+  }
+
+  .nav-buttons{
+    margin-top: 15px;
+  }
+}
+
+/* High DPI screens */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .app-container{
+    border: 0.5px solid #e0e0e0; /* Thinner border for retina */
+  }
 }
